@@ -2,9 +2,12 @@ from rest_framework import serializers
 from todo import models
 
 class TodoSerializer(serializers.Serializer):
+    id = serializers.UUIDField()
+    title = serializers.CharField()
+    description = serializers.CharField()
     class Meta:
         fields = (
-            'pk',
+            'id',
             'title',
             'description'
         )
