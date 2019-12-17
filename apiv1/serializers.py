@@ -1,14 +1,12 @@
 from rest_framework import serializers
 from todo import models
 
-class TodoSerializer(serializers.Serializer):
-    id = serializers.UUIDField()
-    title = serializers.CharField()
-    description = serializers.CharField()
+class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'id',
             'title',
-            'description'
+            'description',
+            'user'
         )
         model = models.Todo
