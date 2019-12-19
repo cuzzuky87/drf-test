@@ -7,8 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ("id","last_login",)
         read_only_fields = ('last_login',)
-        extra_kwargs = {"id":{'read_only':False}}
-    
     
 class TodoSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -20,9 +18,3 @@ class TodoSerializer(serializers.ModelSerializer):
             'user'
         )
         model = models.Todo
-
-    def create(self,validated_data):
-        user_data = validated_data.pop('user')
-        user = User.objects.get(pk=user_data["id"])
-        todo = models.Todo.objects.create(user=user,**validated_data)
-        return todo 
