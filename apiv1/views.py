@@ -1,7 +1,12 @@
 from rest_framework.generics import ListCreateAPIView,RetrieveAPIView
+from rest_framework import viewsets
+from rest_framework.response import Response
 
 from todo.models import Todo
-from .serializers import TodoSerializer
+from .serializers import TodoSerializer, TestappSerializer
+
+from testapp.models import Task
+
 
 
 class ListTodo(ListCreateAPIView):
@@ -15,3 +20,9 @@ class ListTodo(ListCreateAPIView):
 class DetailTodo(RetrieveAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
+
+class TestappViewSet(viewsets.ViewSet):
+    def list(self, request):
+        queryset = Task.objects.all()
+        serializer = TestappSerializer(queryset, many=True) 
+        return Response(serializer.data)

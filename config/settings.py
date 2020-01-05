@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'todo.apps.TodoConfig',
     'apiv1.apps.Apiv1Config',
+    'testapp.apps.TestappConfig',
 ]
 
 MIDDLEWARE = [
